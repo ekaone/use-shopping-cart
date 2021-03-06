@@ -1,6 +1,6 @@
 {
   "name": "use-shopping-cart",
-  "version": "1.1.6",
+  "version": "2.4.2",
   "description": "Shopping cart state and logic for Stripe",
   "author": "dayhaysoos",
   "license": "MIT",
@@ -9,6 +9,8 @@
   "types": "./src/index.d.ts",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
+  "unpkg": "dist/index.umd.js",
+  "umd": "dist/index.umd.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -23,7 +25,7 @@
     "dev": "ntl dev"
   },
   "peerDependencies": {
-    "react": "16.13.1"
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -47,6 +49,13 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-sucrase": "^3.1.0",
+    "@rollup/plugin-url": "^5.0.1",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^3.2.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
@@ -64,15 +73,10 @@
     "react": "16.13.1",
     "react-scripts": "3.4.1",
     "react-test-renderer": "16.13.1",
-    "rollup": "^2.3.3",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-url": "^3.0.1"
+    "rollup": "^2.3.3"
   },
   "dependencies": {
-    "@types/stripe-v3": "^3.1.17",
-    "react-storage-hooks": "^4.0.0"
+    "react-storage-hooks": "^4.0.0",
+    "uuid": "^8.3.1"
   }
 }

@@ -2,9 +2,11 @@ declare module 'use-shopping-cart' {
   interface CommonProviderProps {
     children: JSX.Element
     /**
-     * The stripe instance
+     * The stripe instance or a Promise that resolves with a Stripe instance
      */
-    stripe: stripe.Stripe
+    stripe:
+      | import('@stripe/stripe-js').Stripe
+      | Promise<import('@stripe/stripe-js').Stripe | null>
     /**
      * The preferred currency used to format price data
      */
@@ -151,11 +153,11 @@ declare module 'use-shopping-cart' {
     readonly cartDetails: CartDetails
     /**
      * Redirects customers to the Stripe checkout
-     * @param options {{ sessionId?: string }} only used in CheckoutSession mode
+     * @param options {{ sessionId: string }} only used in CheckoutSession mode
      * @returns Nothing or an error wrapped in a promise if an error occurred
      */
-    redirectToCheckout: (options: {
-      sessionId?: string
+    redirectToCheckout: (options?: {
+      sessionId: string
     }) => Promise<undefined | Error>
     /**
      * Redirects customers to the Stripe checkout
@@ -170,12 +172,25 @@ declare module 'use-shopping-cart' {
      * Totally clears the cart of all items
      */
     clearCart: () => void
+    /**
+     * @param cartDetails cartDetails: [product.sku]: {...}
+     * @param shouldMerge Boolean, defaults to true. If false, it would replace cartDetails
+     */
+    loadCart: (cartDetails: Object<CartDetails>, shouldMerge?: Boolean) => void
   }
 
   /**
    * Provides several utilities and pieces of data for you to use in your application.
    */
   export function useShoppingCart(): ShoppingCartUtilities
+
+  /**
+   * Displays the values returned by `useShoppingCart()` in a table format.
+   */
+  export declare const DebugCart: React.FunctionComponent<React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+  >>
 
   interface FormatCurrencyStringProps {
     /**

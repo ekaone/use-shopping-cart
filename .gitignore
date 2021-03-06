@@ -46,3 +46,9 @@ coverage
 
 # Optional REPL history
 .node_repl_history
+
+# Local Netlify folder
+.netlify
+
+# Build file for UMD
+examples/umd/src/use-shopping-cart.umd.js
